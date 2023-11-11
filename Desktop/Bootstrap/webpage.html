@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Icecreams</title>
+    <link  href= "bootstrap-5.3.2-dist/bootstrap-5.3.2-dist/css/bootstrap.css" rel="stylesheet">
+</head>
+<style>
+  .items{
+    display:flex;
+    flex-flow: row wrap;
+    gap:50px;
+    padding-top: 30px;
+    padding-left: 50px;
+  }
+  h3{
+    padding-top: 30px;
+    padding-left: 400px;
+  }
+  .foot{
+    text-align: center;
+    padding:20px;
+    background-color: #ddd;
+  }
+    
+    
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Offers
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Havmor strawberry Ice-cream</a></li>
+                  <li><a class="dropdown-item" href="#">kwality walls vanilla</a></li>
+                  <li><a class="dropdown-item" href="#">Baskin Robins Ice-cream Tub</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div id="carouselExampleDark" class="carousel carousel-dark slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <center><img src="https://assets-global.website-files.com/5e9ebc3fff165933f19fbdbe/61b31c9d289e22335b6753b2_Ice%20Cream%202.jpg" class="d-block w-20" alt="..." width="100%" height="550px"></center>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>scoop me up!</h5>
+              
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <center><img src="https://www.allrecipes.com/thmb/P59TgUCXtQbv69dHRlZduE38xs8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/453291-five-ingredient-ice-cream-Alberta-Rose-4x3-1-4c9ec10ac4ab4e828615e81aa608dd6b.jpg" class="d-block w-100" alt="..." width="100%" height="550px"></center>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Everything's better with sprinkles</h5>
+              
+            </div>
+          </div>
+          <div class="carousel-item">
+            <center><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSCgOSKM_CBM6cLV8ZAPZ4EHEvqoKZpwuOAQ&usqp=CAU"" class="d-block w-100" alt="..." width="100%" height="550px"></center>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Always have room for dessert</h5>
+              
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class = "items">
+      <div class="card" style="width: 18rem;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Strawberry_sorbet_zoomed.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Sorbet</p>
+        </div>
+      </div>
+      <div class="card" style="width: 15rem;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Soft_Ice_cream.jpg/255px-Soft_Ice_cream.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Soft-serve</p>
+        </div>
+      </div>
+      <div class="card" style="width: 13rem;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/CafeMia.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Soft-serve</p>
+        </div>
+      </div>
+      <div class="card" style="width: 15rem;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Butter_pecan_caramel_ice_cream.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Butter Pecan</p>
+        </div>
+      </div>
+      </div>
+      <h3>Yummy Ice-Creams at Lowest Prices</h3>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15230.281363548853!2d78.4748856!3d17.3843959!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb977d3fffffff%3A0x15ed454fa859dcaf!2sFamous%20Ice%20Cream!5e0!3m2!1sen!2sin!4v1699027236701!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <footer class = "foot">
+        <h4>&copy Famous Ice-cream</h4>
+      </footer>
+      
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+     
+
+    
+</body>
+</html>
