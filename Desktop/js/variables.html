@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-1</title>
+    <style>
+        summary{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color:antiquewhite;
+            font-size:larger;
+        }
+        *{
+            background-color:orchid;
+        }
+        p{
+            font-family:cursive;
+        }
+        li{
+            font-weight: bold;
+            font-style: oblique;
+            color:brown;
+            font-size:large;
+        }
+
+
+    </style>
+</head>
+<body>
+    <details>
+        <summary>Variables</summary>
+        <p>Variable is a container(storage space) to hold data.
+        </p>
+        <p>Variables will have scope in javascript which refers to the region of code where a variable can be accessed.There are two main types of scope in javascript:</p>
+        <li>Global variables:</li>
+        <p>Global variables are declared outside of any function, and can be accessed from anywhere in the program.</p>
+        <li>Local variables:</li>
+        <p>Local variables are declared inside of a function, and can only be accessed from within that function.</p>
+        <p>In JavaScript, users can declare a variable using 3 keywords that are var, let, and const.</p>
+        <li>Var keyword:</li>
+        <p>The scope of the var keyword is the global or function scope. It means variables defined outside the function can be accessed globally, and variables defined inside a particular function can be accessed within the function.</p>
+        <li>let keyword:</li>
+        <p>The let keyword is an improved version of the var keyword.The scope of a let variable is only block scoped(local). It can’t be accessible outside the particular block.</p>
+        <li>const keyword:</li>
+        <p> The const keyword has all the properties that are the same as the let keyword, except the user cannot update it.The scope of a const keyword is block-scoped(local)</p>
+       <p>when users declare a const variable, they need to initialize it, otherwise, it returns an error. The user cannot update the const variable once it is declared. </p>
+        <p>There are some rules while declaring a JavaScript variable (also known as identifiers);</p>
+        <li>Name must start with a letter (a to z or A to Z), underscore( _ ), or dollar( $ ) sign.</li>
+         <li>After first letter we can use digits (0 to 9), for example value1.</li>
+           <li>JavaScript variables are case sensitive, for example x and X are different variables.</li>
+           <li>keywords cannot be used as variable names.</li><br>
+        <center><img src="multimedia/code.png" height="300px"width="300px"> </center>          
+        </details>
+        <details>
+            <summary>Datatypes</summary>
+            <p>JavaScript provides different data types to hold different types of values.JavaScript is a dynamic type language, means you don't need to specify type of the variable because it is dynamically used by JavaScript engine.  There are two types of data types in JavaScript.</p>
+            <li>Primitive datatypes:</li>
+            <p>Primitive datatypes are a set of basic datatypes and they are pre-defined. These are immutable which means the value cannot be changed once created.There are 5 datatypes in javascript;</p>
+            <p>String:Represents sequence of characters</p>
+            <p>Number:Represents numerical values</p>
+            <p>boolean:Represents boolean value either true or false.</p>
+            <p>undefined:Represents undefined value which means the variable is declared but no value assigned to it.</p>
+            <p>Null:Represents null or no value at all.Here value is assigned but null value i.e 0. The default null value in javascript is 0.</p>
+            <li>Non-Primitive datatypes:</li>
+            <p>Non-primitive datatypes are user-defined and are mutable which means the value can be changed once the value is created. There are 3 types of Non-primitive datatypes in javascript;</p>
+            <p>Array:Array is a collection of heterogenous data which means we can store mutliple datatypes in an array.</p>
+            <p>Object:It is an instance that allows us to access members in JavaScript.It is written as key-value pairs to store different type of data.</p>
+            <p>RegEx:The RegExp object compares a string to a particular pattern. We can find if a regular expression pattern is present in the string or not using the comparison functions of the RegExp object.</p>
+            <center><img src = "multimedia/codedata.png" height="400px" width="400px"></center>
+           
+        </details>
+        <details>
+            <summary>Voice-over video explaining datatypes and variables</summary>
+           <video controls height="500px" width="600px">
+            <source src = "multimedia/variables.mp4">
+        </video>
+        </details>
+
+       
+</body>
+</html>
