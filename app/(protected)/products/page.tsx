@@ -64,43 +64,87 @@ export default function ProductsPage(){
           </div>
         </div>
 
-        <div className="mb-4 grid grid-cols-1 md:grid-cols-4 gap-3">
-          <input placeholder="Search by name" value={query} onChange={e=>setQuery(e.target.value)} className="p-3 border rounded" />
-          <select value={category} onChange={e=>setCategory(e.target.value)} className="p-3 border rounded">
-            <option value="">All categories</option>
-            {categories.map(c=> <option key={c} value={c}>{c}</option>)}
-          </select>
-          <select value={status} onChange={e=>setStatus(e.target.value)} className="p-3 border rounded">
-            <option value="">Any status</option>
-            <option>Available</option>
-            <option>Out of Stock</option>
-            <option>Coming Soon</option>
-          </select>
-          <select value={brand} onChange={e=>setBrand(e.target.value)} className="p-3 border rounded">
-            <option value="">All brands</option>
-            {brands.map(b=> <option key={b} value={b}>{b}</option>)}
-          </select>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          {/* Sidebar */}
+          <aside className="md:col-span-3">
+            <div className="bg-white p-4 rounded-lg shadow-sm sticky top-20">
+              <h3 className="font-semibold mb-3">Widget price filter</h3>
+              <div className="flex items-center gap-2">
+                <input type="number" min={0} value={minPrice} onChange={e=>setMinPrice(e.target.value)} className="w-1/2 p-2 border rounded" placeholder="Min" />
+                <input type="number" min={0} value={maxPrice} onChange={e=>setMaxPrice(e.target.value)} className="w-1/2 p-2 border rounded" placeholder="Max" />
+              </div>
+              <div className="mt-3 text-sm text-gray-600">Price: ₹{minPrice || 0} — ₹{maxPrice || 99999}</div>
+              <button onClick={()=>{setMinPrice(''); setMaxPrice('')}} className="mt-3 px-3 py-1 border rounded text-sm">Clear</button>
 
-        <div className="mb-4 grid grid-cols-1 md:grid-cols-4 gap-3">
-          <input placeholder="Min price" value={minPrice} onChange={e=>setMinPrice(e.target.value)} className="p-3 border rounded" type="number" />
-          <input placeholder="Max price" value={maxPrice} onChange={e=>setMaxPrice(e.target.value)} className="p-3 border rounded" type="number" />
-          <select value={sort} onChange={e=>setSort(e.target.value)} className="p-3 border rounded">
-            <option value="">Sort</option>
-            <option value="rating_desc">Rating: High → Low</option>
-            <option value="rating_asc">Rating: Low → High</option>
-          </select>
-          <div className="p-3 text-sm text-gray-600">Found: <span className="font-medium text-gray-800">{filtered.length}</span></div>
-        </div>
+              <hr className="my-4" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {pageItems.map((p:any)=> <ProductCard key={p.sku} product={p} />)}
-        </div>
+              <h4 className="font-semibold mb-2">Product Categories</h4>
+              <ul className="text-sm space-y-1">
+                {categories.map(c=> (
+                  <li key={c} className="flex items-center justify-between">
+                    <button onClick={()=>setCategory(c)} className={`text-left ${category===c? 'font-medium text-indigo-600':''}`}>{c}</button>
+                    <span className="text-gray-400 text-xs">›</span>
+                  </li>
+                ))}
+              </ul>
 
-        <div className="mt-6 flex items-center justify-center gap-3">
-          <button onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1} className="px-4 py-2 border rounded">Prev</button>
-          <div className="text-sm">Page <span className="font-medium">{page}</span> / <span className="font-medium">{totalPages}</span></div>
-          <button onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages} className="px-4 py-2 border rounded">Next</button>
+              <hr className="my-4" />
+              <h4 className="font-semibold mb-2">Filter by Color</h4>
+              <div className="flex gap-2">
+                {['green','red','blue','white','black'].map(col=> (
+                  <button key={col} onClick={()=>setBrand(col)} title={col} className={`w-6 h-6 rounded-full border ${brand===col? 'ring-2 ring-offset-1 ring-indigo-400':''}`} style={{background: col}} />
+                ))}
+              </div>
+
+              <hr className="my-4" />
+              <h4 className="font-semibold mb-2">Product Status</h4>
+              <div className="flex flex-col text-sm">
+                <label className="inline-flex items-center"><input type="radio" name="status" value="" checked={status===""} onChange={()=>setStatus('')} className="mr-2"/> All</label>
+                <label className="inline-flex items-center"><input type="radio" name="status" value="Available" checked={status==='Available'} onChange={()=>setStatus('Available')} className="mr-2"/> In Stock</label>
+                <label className="inline-flex items-center"><input type="radio" name="status" value="On Sale" checked={status==='On Sale'} onChange={()=>setStatus('On Sale')} className="mr-2"/> On Sale</label>
+              </div>
+            </div>
+          </aside>
+
+          {/* Main */}
+          <main className="md:col-span-9">
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-xs bg-yellow-100 text-yellow-800 inline-block px-2 py-1 rounded mb-2">Only This Week</div>
+                  <h2 className="text-xl font-bold">Grocery store with different treasures</h2>
+                  <p className="text-sm text-gray-600 mt-1">We have prepared special discounts for you on grocery products.</p>
+                </div>
+                <div className="hidden sm:block w-48">
+                  <img src="/auth-illustration.svg" alt="hero" className="w-full h-auto" />
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex-1 mr-4">
+                <input placeholder="Search by name" value={query} onChange={e=>setQuery(e.target.value)} className="w-full p-3 border rounded" />
+              </div>
+              <div className="flex items-center gap-3">
+                <select value={sort} onChange={e=>setSort(e.target.value)} className="p-3 border rounded">
+                  <option value="">Sort</option>
+                  <option value="rating_desc">Rating: High → Low</option>
+                  <option value="rating_asc">Rating: Low → High</option>
+                </select>
+                <div className="text-sm text-gray-600">Found: <span className="font-medium text-gray-800">{filtered.length}</span></div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {pageItems.map((p:any)=> <ProductCard key={p.sku} product={p} />)}
+            </div>
+
+            <div className="mt-6 flex items-center justify-center gap-3">
+              <button onClick={()=>setPage(p=>Math.max(1,p-1))} disabled={page===1} className="px-4 py-2 border rounded">Prev</button>
+              <div className="text-sm">Page <span className="font-medium">{page}</span> / <span className="font-medium">{totalPages}</span></div>
+              <button onClick={()=>setPage(p=>Math.min(totalPages,p+1))} disabled={page===totalPages} className="px-4 py-2 border rounded">Next</button>
+            </div>
+          </main>
         </div>
       </div>
     </ProtectedRoute>
