@@ -3,3 +3,17 @@
 @tailwind utilities;
 
 html,body,#root{height:100%;}
+
+/* small utility for smooth appearance */
+:root{--card-bg: 255 255 255}
+
+/* subtle entrance animation for main content */
+.page-enter {
+	opacity: 0;
+	transform: translateY(6px);
+}
+.page-enter-active {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 280ms ease, transform 280ms ease;
+}
