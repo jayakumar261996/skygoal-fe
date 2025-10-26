@@ -1,21 +1,37 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/useAuth'
 import AuthForm from '@/components/auth/AuthForm'
+import toast from 'react-hot-toast'
 
 export default function LoginPage(){
   const router = useRouter()
-  const { signIn } = useAuth()
+  const { signIn, user, loading } = useAuth()
+
+  // redirect authenticated users away from login page
+  useEffect(() => {
+    if (!loading && user) router.replace('/products')
+  }, [loading, user, router])
+
+  // avoid flashing the login form while auth is initializing or when user is present
+  if (loading) return <div className="p-6">Loading...</div>
+  if (user) return null
 
   const handleSubmit = async (email: string, password: string) => {
-    await signIn(email, password)
-    // redirect to products after successful login
-    router.push('/products')
+    try {
+      await signIn(email, password)
+      toast.success('Successfully logged in!')
+      // redirect to products after successful login
+      router.push('/products')
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to log in')
+      throw error // re-throw to let AuthForm handle it
+    }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-indigo-50">
+  <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-4xl w-full mx-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="hidden md:flex flex-col items-start p-8 rounded-2xl bg-gradient-to-tr from-indigo-600 to-indigo-400 text-white shadow-lg">
           <div className="w-full flex items-center justify-between mb-6">

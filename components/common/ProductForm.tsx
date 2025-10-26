@@ -1,5 +1,6 @@
-'use client'
+ 'use client'
 import React, { useState, useRef } from 'react'
+import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { useProductStore } from '@/store/productStore'
 
@@ -98,15 +99,16 @@ export default function ProductForm(){
     const list = JSON.parse(localStorage.getItem('products')||'[]')
     list.unshift(payload)
     localStorage.setItem('products', JSON.stringify(list))
-    setSaved(true)
-    setTimeout(()=> router.push('/products'), 800)
+  setSaved(true)
+  toast.success('Product added')
+  setTimeout(()=> router.push('/products'), 800)
   }
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg max-w-3xl mx-auto transition-all">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold">Add product</h2>
-        <div className="text-sm text-gray-500">Fill product details and click Add</div>
+    
       </div>
 
       {error && <div className="text-red-600 mb-4">{error}</div>}
@@ -145,7 +147,14 @@ export default function ProductForm(){
         <div>
           <label className="block text-sm font-medium text-gray-700">Product Image</label>
           <div className="mt-2 flex items-center gap-4">
-            <div className="w-32 h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden hover:border-indigo-400 transition-colors">
+            <div
+              role="button"
+              tabIndex={0}
+              aria-label="Upload product image"
+              onClick={() => { if (fileRef.current) fileRef.current.click() }}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (fileRef.current) fileRef.current.click() } }}
+              className="w-32 h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden hover:border-indigo-400 transition-colors cursor-pointer"
+            >
               {imagePreview ? (
                 <img 
                   src={imagePreview} 
@@ -166,12 +175,13 @@ export default function ProductForm(){
               )}
             </div>
             <div>
+              {/* hidden file input: box above triggers this */}
               <input 
                 ref={fileRef} 
                 type="file" 
                 accept="image/jpeg,image/png,image/webp" 
                 onChange={e=>{ const f = e.target.files?.[0]; if(f) handleImage(f)}} 
-                className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" 
+                className="hidden"
               />
               <div className="mt-2 text-xs text-gray-500">
                 Max size: 5MB. Formats: JPG, PNG, WebP

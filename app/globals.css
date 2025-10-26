@@ -5,7 +5,50 @@
 html,body,#root{height:100%;}
 
 /* small utility for smooth appearance */
-:root{--card-bg: 255 255 255}
+:root{
+		/* card and app background (RGB) — change these to customize the whole site's background */
+		--app-bg: 224 247 250; /* #E0F7FA pale cyan */
+		--card-bg: 255 255 255; /* white cards to contrast with page background */
+		--auth-bg: 224 247 250; /* same as app bg (pale cyan) */
+		--text-color: 0 77 64; /* #004D40 teal text */
+		--accent-color: 0 172 193; /* #00ACC1 bright cyan (rgb) */
+		--accent-alt: 38 166 154; /* #26A69A minty teal (rgb) */
+}
+
+/* Apply a consistent background color for the whole site */
+html, body {
+	background-color: rgb(var(--app-bg));
+	color: rgb(var(--text-color));
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Make components that use `bg-white` pick up the card background variable so the whole site matches */
+.bg-white {
+	background-color: rgb(var(--card-bg)) !important;
+	/* subtle shadow to separate cards from the page background (no border) */
+	box-shadow: 0 6px 16px rgba(16,24,40,0.06);
+}
+
+/* Auth page background helper */
+.auth-bg {
+	background-color: rgb(var(--auth-bg));
+}
+
+/* Theme text utility to force elements to use the theme text color */
+.theme-text {
+	color: rgb(var(--text-color)) !important;
+}
+
+/* Header nav link styling to use theme color and subtle hover */
+.header-nav-link {
+	color: rgb(var(--text-color));
+	transition: opacity 160ms ease, background-color 160ms ease;
+}
+.header-nav-link:hover{ opacity: .85 }
+
+/* Buttons or utilities that use classes like `bg-white/90` will still have semi-transparent white.
+	 If you want them to match exactly, we can add more specific overrides. */
 
 /* subtle entrance animation for main content */
 .page-enter {

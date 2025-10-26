@@ -3,7 +3,6 @@ import React, { useEffect, useMemo, useState } from 'react'
 import ProductCard from '@/components/common/ProductCard'
 import ProtectedRoute from '@/components/common/ProtectedRoute'
 import { useProductStore } from '@/store/productStore'
-import Header from '@/components/common/Header'
 import Link from 'next/link'
 
 const PAGE_SIZE = 20
@@ -55,12 +54,11 @@ export default function ProductsPage(){
 
   return (
     <ProtectedRoute>
-      <Header />
       <div className="max-w-6xl mx-auto p-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-semibold">Products</h1>
           <div className="flex items-center gap-3">
-            <Link href="/add-product" className="px-4 py-2 bg-indigo-600 text-white rounded shadow">Add product</Link>
+            <Link href="/add-product" className="px-4 py-2 text-white rounded shadow" style={{ backgroundColor: 'rgb(var(--accent-color))' }}>Add product</Link>
           </div>
         </div>
 
