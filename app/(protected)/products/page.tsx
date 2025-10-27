@@ -66,13 +66,39 @@ export default function ProductsPage(){
           {/* Sidebar */}
           <aside className="md:col-span-3">
             <div className="bg-white p-4 rounded-lg shadow-sm sticky top-20">
-              <h3 className="font-semibold mb-3">Widget price filter</h3>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-semibold">Widget price filter</h3>
+                <button 
+                  onClick={() => {
+                    const button = document.querySelector('.reset-button');
+                    button?.classList.add('filter-reset');
+                    setTimeout(() => button?.classList.remove('filter-reset'), 300);
+                    
+                    setQuery('');
+                    setCategory('');
+                    setStatus('');
+                    setBrand('');
+                    setMinPrice('');
+                    setMaxPrice('');
+                    setSort('');
+                  }} 
+                  className="px-3 py-1.5 text-sm font-medium text-white rounded-md filter-button reset-button hover:opacity-90"
+                  style={{ backgroundColor: 'rgb(var(--accent-color))' }}
+                >
+                  Reset All Filters
+                </button>
+              </div>
               <div className="flex items-center gap-2">
-                <input type="number" min={0} value={minPrice} onChange={e=>setMinPrice(e.target.value)} className="w-1/2 p-2 border rounded" placeholder="Min" />
-                <input type="number" min={0} value={maxPrice} onChange={e=>setMaxPrice(e.target.value)} className="w-1/2 p-2 border rounded" placeholder="Max" />
+                <input type="number" min={0} value={minPrice} onChange={e=>setMinPrice(e.target.value)} className="w-1/2 p-2 border rounded price-input filter-transition" placeholder="Min" />
+                <input type="number" min={0} value={maxPrice} onChange={e=>setMaxPrice(e.target.value)} className="w-1/2 p-2 border rounded price-input filter-transition" placeholder="Max" />
               </div>
               <div className="mt-3 text-sm text-gray-600">Price: ₹{minPrice || 0} — ₹{maxPrice || 99999}</div>
-              <button onClick={()=>{setMinPrice(''); setMaxPrice('')}} className="mt-3 px-3 py-1 border rounded text-sm">Clear</button>
+              <button 
+                onClick={()=>{setMinPrice(''); setMaxPrice('')}} 
+                className="mt-3 px-3 py-1 border rounded text-sm hover:bg-gray-50 filter-button"
+              >
+                Clear Price
+              </button>
 
               <hr className="my-4" />
 
@@ -80,26 +106,29 @@ export default function ProductsPage(){
               <ul className="text-sm space-y-1">
                 {categories.map(c=> (
                   <li key={c} className="flex items-center justify-between">
-                    <button onClick={()=>setCategory(c)} className={`text-left ${category===c? 'font-medium text-indigo-600':''}`}>{c}</button>
+                    <button 
+                      onClick={()=>setCategory(c)} 
+                      className={`text-left filter-transition ${category===c? 'font-medium text-indigo-600 category-active':''}`}
+                    >
+                      {c}
+                    </button>
                     <span className="text-gray-400 text-xs">›</span>
                   </li>
                 ))}
               </ul>
 
               <hr className="my-4" />
-              <h4 className="font-semibold mb-2">Filter by Color</h4>
-              <div className="flex gap-2">
-                {['green','red','blue','white','black'].map(col=> (
-                  <button key={col} onClick={()=>setBrand(col)} title={col} className={`w-6 h-6 rounded-full border ${brand===col? 'ring-2 ring-offset-1 ring-indigo-400':''}`} style={{background: col}} />
-                ))}
-              </div>
-
-              <hr className="my-4" />
               <h4 className="font-semibold mb-2">Product Status</h4>
               <div className="flex flex-col text-sm">
-                <label className="inline-flex items-center"><input type="radio" name="status" value="" checked={status===""} onChange={()=>setStatus('')} className="mr-2"/> All</label>
-                <label className="inline-flex items-center"><input type="radio" name="status" value="Available" checked={status==='Available'} onChange={()=>setStatus('Available')} className="mr-2"/> In Stock</label>
-                <label className="inline-flex items-center"><input type="radio" name="status" value="On Sale" checked={status==='On Sale'} onChange={()=>setStatus('On Sale')} className="mr-2"/> On Sale</label>
+                <label className="inline-flex items-center filter-transition">
+                  <input type="radio" name="status" value="" checked={status===""} onChange={()=>setStatus('')} className="mr-2 status-radio"/> All
+                </label>
+                <label className="inline-flex items-center filter-transition">
+                  <input type="radio" name="status" value="Available" checked={status==='Available'} onChange={()=>setStatus('Available')} className="mr-2 status-radio"/> In Stock
+                </label>
+                <label className="inline-flex items-center filter-transition">
+                  <input type="radio" name="status" value="On Sale" checked={status==='On Sale'} onChange={()=>setStatus('On Sale')} className="mr-2 status-radio"/> On Sale
+                </label>
               </div>
             </div>
           </aside>

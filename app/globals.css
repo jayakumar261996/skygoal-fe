@@ -60,3 +60,60 @@ html, body {
 	transform: translateY(0);
 	transition: opacity 280ms ease, transform 280ms ease;
 }
+
+/* Product Filter Animations */
+.filter-transition {
+  transition: all 0.3s ease-in-out;
+}
+
+.filter-button {
+  transition: all 0.2s ease;
+}
+
+.filter-button:active {
+  transform: scale(0.95);
+}
+
+.product-card-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.product-card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.filter-reset {
+  animation: pulse 0.3s ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.category-active {
+  transform: translateX(4px);
+  transition: transform 0.2s ease;
+}
+
+/* Price range animation */
+.price-input {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.price-input:focus {
+  box-shadow: 0 0 0 2px rgba(var(--accent-color), 0.2);
+}
+
+/* Status radio animation */
+.status-radio {
+  transition: transform 0.2s ease;
+}
+
+.status-radio:checked {
+  transform: scale(1.1);
+}
